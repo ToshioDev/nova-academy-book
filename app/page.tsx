@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { ArrowRight, BookOpen, Briefcase, Code2, FileText, Globe, Megaphone, Menu, MessageCircle, MessageCircleCodeIcon, Palette, Shield, X } from 'lucide-react';
+import { ArrowRight, BookOpen, Briefcase, Code2, FileText, Globe, Megaphone, Menu, MessageCircle, Palette, Shield, X } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
