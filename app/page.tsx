@@ -3,20 +3,45 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { ArrowRight, BookOpen, Briefcase, Code2, FileText, Globe, Megaphone, Menu, MessageCircle, Palette, Shield, X } from 'lucide-react';
+import { ArrowRight, BookOpen, Briefcase, Code2, FileText, Globe, LucideMessageCircle, Megaphone, Menu, MessageCircle, Palette, Shield, X } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Switch } from "@/components/ui/switch"
 import NavButtons from '@/components/ui/navbtns';
+import { CountrySelect } from '@/components/ui/countryselect';
+import WhatsAppIcon from '@/public/icons/WhatsAppIcon';
+import EnvelopeIcon from '@/public/icons/EnvelopeIcon';
 
 export default function LandingPage() {
   const [activeTab, setActiveTab] = useState<string>('hero');
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   const [isPhoneSelected, setIsPhoneSelected] = useState<boolean>(true);
+  const [selectedDialCode, setSelectedDialCode] = useState<string>('+52'); // Default to Mexico
+  const [defaultCountry, setDefaultCountry] = useState<string>('MX');
+
+  useEffect(() => {
+    const geoData = document.getElementById('geo-data');
+    if (geoData) {
+      const countryCode = geoData.getAttribute('data-country-code');
+      if (countryCode) {
+        setDefaultCountry(countryCode);
+        //const country = latinAmericanCountries.find(c => c.code === countryCode);
+        //if (country) {
+          //setSelectedDialCode(country.dialCode);
+        //}
+      }
+    }
+  }, []);
+
+
   const handleSwitchChange = () => {
     setIsPhoneSelected(!isPhoneSelected); // Invierte el valor de isPhoneSelected
   };
+  const handleCountrySelect = (dialCode: string) => {
+    setSelectedDialCode(dialCode);
+  };
+  
   useEffect(() => {
     const handleScroll = () => {
       const sections = ['hero', 'programacion', 'proximos-cursos'];
@@ -159,22 +184,14 @@ export default function LandingPage() {
             </p>
           </div>
           <div className="mx-auto w-full max-w-sm space-y-2">
-            <p className="text-xs text-gray-300 italic">¿Ocupas WhatsApp?</p>
-            <div className='flex space-x-2 items-center justify-center py-2'>
-              <MessageCircle className="text-white" />
-              <Switch
-                checked={isPhoneSelected}
-                onCheckedChange={handleSwitchChange}
-              />
-
-            </div>
+          <p className="text-xs text-gray-300">Cupos limitados - ¡Asegura tu lugar ahora!</p>
             <form className="flex space-x-2">
-              <div className="flex items-center">
-
-              </div>
+              {isPhoneSelected && (
+                <CountrySelect onSelect={handleCountrySelect} defaultCountry={defaultCountry} />
+              )}
               <Input
-                className="bg-white/10 border-white/20 text-white placeholder:text-gray-300 input-celeste-focus"
-                placeholder={isPhoneSelected ? 'Ingresa tu teléfono' : 'Ingresa tu email'}
+                className="flex-1 bg-white/10 border-white/20 text-white placeholder:text-gray-300 input-celeste-focus"
+                placeholder={isPhoneSelected ? '5511091192' : 'janedoe@tucorreo.com'}
                 type={isPhoneSelected ? 'tel' : 'email'}
               />
               <Button className="bg-white text-[#0122F4] hover:bg-white/90">
@@ -182,10 +199,20 @@ export default function LandingPage() {
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </form>
-            <p className="text-xs text-gray-300">Cupos limitados - ¡Asegura tu lugar ahora!</p>
+            <div className='flex space-x-2 items-center justify-center'>
+              
+              <EnvelopeIcon/>
+              <Switch
+                checked={isPhoneSelected}
+                onCheckedChange={handleSwitchChange}
+              />
+              <WhatsAppIcon/>
+            </div>
+            
           </div>
         </div>
       </section>
+
 
       {/* Programación Section */}
       <section id="programacion" className="w-full py-12 md:py-24 lg:py-32 bg-white/5">
