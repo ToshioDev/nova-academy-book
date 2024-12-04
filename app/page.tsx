@@ -12,6 +12,7 @@ import NavButtons from '@/components/ui/navbtns';
 import { CountrySelect } from '@/components/ui/countryselect';
 import WhatsAppIcon from '@/public/icons/WhatsAppIcon';
 import EnvelopeIcon from '@/public/icons/EnvelopeIcon';
+import InscriptionCounter from '@/components/ui/inscription-counter';
 
 export default function LandingPage() {
   const [activeTab, setActiveTab] = useState<string>('hero');
@@ -19,7 +20,17 @@ export default function LandingPage() {
   const [isPhoneSelected, setIsPhoneSelected] = useState<boolean>(true);
   const [selectedDialCode, setSelectedDialCode] = useState<string>('+52'); // Default to Mexico
   const [defaultCountry, setDefaultCountry] = useState<string>('MX');
+  const [isPopupVisible, setIsPopupVisible] = useState<boolean>(true); // Controla la visibilidad del popup
 
+  // Función para abrir el popup
+  const openPopup = () => {
+    setIsPopupVisible(true);
+  };
+
+  // Función para cerrar el popup
+  const closePopup = () => {
+    setIsPopupVisible(false);
+  };
   useEffect(() => {
     const geoData = document.getElementById('geo-data');
     if (geoData) {
@@ -29,7 +40,7 @@ export default function LandingPage() {
         console.log(selectedDialCode)
         //const country = latinAmericanCountries.find(c => c.code === countryCode);
         //if (country) {
-          //setSelectedDialCode(country.dialCode);
+        //setSelectedDialCode(country.dialCode);
         //}
       }
     }
@@ -42,7 +53,7 @@ export default function LandingPage() {
   const handleCountrySelect = (dialCode: string) => {
     setSelectedDialCode(dialCode);
   };
-  
+
   useEffect(() => {
     const handleScroll = () => {
       const sections = ['hero', 'programacion', 'proximos-cursos'];
@@ -122,7 +133,7 @@ export default function LandingPage() {
                 </TabsTrigger>
               </TabsList>
             </Tabs>
-            <NavButtons />
+            <NavButtons onClick={openPopup} />
           </nav>
         </div>
 
@@ -166,7 +177,7 @@ export default function LandingPage() {
                   <span className="absolute left-0 bottom-0 h-[2px] w-full bg-blue-500" />
                 )}
               </button>
-              <NavButtons />
+              <NavButtons onClick={openPopup} />
             </nav>
           </div>
         )}
@@ -185,31 +196,37 @@ export default function LandingPage() {
             </p>
           </div>
           <div className="mx-auto w-full max-w-sm space-y-2">
-          <p className="text-xs text-gray-300">Cupos limitados - ¡Asegura tu lugar ahora!</p>
+            <p className="text-xs text-gray-300">Cupos limitados - ¡Asegura tu lugar ahora!</p>
             <form className="flex space-x-2">
               {isPhoneSelected && (
                 <CountrySelect onSelect={handleCountrySelect} defaultCountry={defaultCountry} />
               )}
               <Input
                 className="flex-1 bg-white/10 border-white/20 text-white placeholder:text-gray-300 input-celeste-focus"
-                placeholder={isPhoneSelected ? '5511091192' : 'janedoe@tucorreo.com'}
+                placeholder={isPhoneSelected ? '1234567890' : 'janedoe@tucorreo.com'}
                 type={isPhoneSelected ? 'tel' : 'email'}
               />
-              <Button className="bg-white text-[#0122F4] hover:bg-white/90">
+              <InscriptionCounter
+                targetDate="2024-12-06T00:00:00Z" // Ejemplo de fecha
+                isPopupVisible={isPopupVisible}   // Estado de visibilidad
+                closePopup={closePopup}           // Función para cerrar el popup
+              />
+
+              <Button type="button" className="bg-white text-[#0122F4] hover:bg-white/90" onClick={openPopup}>
                 Inscríbete
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </form>
             <div className='flex space-x-2 items-center justify-center'>
-              
-              <EnvelopeIcon/>
+
+              <EnvelopeIcon />
               <Switch
                 checked={isPhoneSelected}
                 onCheckedChange={handleSwitchChange}
               />
-              <WhatsAppIcon/>
+              <WhatsAppIcon />
             </div>
-            
+
           </div>
         </div>
       </section>
@@ -236,6 +253,7 @@ export default function LandingPage() {
                   Aprende el lenguaje más versátil y demandado en la industria. Ideal para principiantes y profesionales.
                 </p>
                 <Button
+                  onClick={openPopup}
                   variant="outline"
                   className="border-white bg-white text-[#0122F4] hover:bg-[#0122F4] hover:text-white transition-colors duration-300 font-semibold"
                 >
@@ -258,6 +276,7 @@ export default function LandingPage() {
                 </p>
                 <Button
                   variant="outline"
+                  onClick={openPopup}
                   className="border-white bg-white text-[#0122F4] hover:bg-[#0122F4] hover:text-white transition-colors duration-300 font-semibold"
                 >
                   Ver detalles
