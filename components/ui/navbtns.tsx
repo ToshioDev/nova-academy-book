@@ -13,13 +13,13 @@ export default function NavButtons({ onClick }: NavButtonsProps) {
         onClick={onClick} // Asignamos la función pasada como prop
         className="bg-white text-[#0122F4] hover:bg-white/90 flex items-center"
       >
-        HomeWork Space
+        Aula Virtual
         <NotebookPen className="ml-2 h-4 w-4" />
       </Button>
       <Badge
         variant="default"
         color="red"
-        className="absolute bottom-8 right-32 bg-red-500"
+        className="absolute bottom-8 right-24 bg-red-500"
       >
         Nuevo
       </Badge>
