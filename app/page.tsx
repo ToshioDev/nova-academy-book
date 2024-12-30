@@ -115,19 +115,19 @@ export default function LandingPage() {
               <TabsList className="flex bg-transparent h-10 items-center justify-center rounded-none p-0">
                 <TabsTrigger
                   value="hero"
-                  className="relative h-10 rounded-full px-4 font-medium text-white transition-colors data-[state=active]:text-blue-700 data-[state=active]:font-bold hover:bg-white/10"
+                  className="relative h-10 rounded-full px-4 font-medium text-white transition-colors data-[state=active]:text-blue-700 hover:bg-white/10"
                 >
                   Inicio
                 </TabsTrigger>
                 <TabsTrigger
                   value="programacion"
-                  className="relative h-10 rounded-full px-4 font-medium text-white transition-colors data-[state=active]:text-blue-700 data-[state=active]:font-bold hover:bg-white/10"
+                  className="relative h-10 rounded-full px-4 font-medium text-white transition-colors data-[state=active]:text-blue-700 hover:bg-white/10"
                 >
                   Programación
                 </TabsTrigger>
                 <TabsTrigger
                   value="proximos-cursos"
-                  className="relative h-10 rounded-full px-4 font-medium text-white transition-colors data-[state=active]:text-blue-700 data-[state=active]:font-bold hover:bg-white/10"
+                  className="relative h-10 rounded-full px-4 font-medium text-white transition-colors data-[state=active]:text-blue-700 hover:bg-white/10"
                 >
                   Próximos Cursos
                 </TabsTrigger>
@@ -139,7 +139,7 @@ export default function LandingPage() {
 
         {/* Menú Desplegable Mobile */}
         {isMenuOpen && (
-          <div className="md:hidden bg-transparent backdrop-blur-sm border-t border-white/10">
+          <div className="md:hidden bg-transparent backdrop-blur-sm px-4 pb-3 border-t border-white/10">
             <nav className="flex flex-col items-start space-y-2 p-4 text-white">
               <button
                 onClick={() => {
