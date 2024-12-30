@@ -8,7 +8,7 @@ interface NavButtonsProps {
 
 export default function NavButtons({ onClick }: NavButtonsProps) {
   return (
-    <div className="relative md:pl-44 top-4 md:top-0">
+    <div className="relative top-4 md:top-0">
       <Button
         onClick={onClick} // Asignamos la función pasada como prop
         className="bg-white text-[#0122F4] hover:bg-white/90 flex items-center"

@@ -89,7 +89,7 @@ export default function LandingPage() {
           <Image
             src="/logo.svg"
             alt="Academia Nova Logo"
-            className="pt-2"
+            className="flex-none pt-2"
             width={180}
             height={40}
           />
@@ -103,31 +103,31 @@ export default function LandingPage() {
           </button>
 
           {/* Navegación Desktop */}
-          <nav className="hidden md:flex pl-64 justify-center w-full">
+          <nav className="hidden md:flex flex-1">
             <Tabs
               value={activeTab}
               onValueChange={(value) => {
                 setActiveTab(value);
                 scrollToSection(value);
               }}
-              className="relative"
+              className="relative flex-1"
             >
               <TabsList className="flex bg-transparent h-10 items-center justify-center rounded-none p-0">
                 <TabsTrigger
                   value="hero"
-                  className="relative h-10 rounded-full px-4 pt-2 font-medium text-white transition-colors data-[state=active]:text-blue-700 data-[state=active]:font-bold hover:bg-white/10"
+                  className="relative h-10 rounded-full px-4 font-medium text-white transition-colors data-[state=active]:text-blue-700 data-[state=active]:font-bold hover:bg-white/10"
                 >
                   Inicio
                 </TabsTrigger>
                 <TabsTrigger
                   value="programacion"
-                  className="relative h-10 rounded-full px-4 pt-2 font-medium text-white transition-colors data-[state=active]:text-blue-700 data-[state=active]:font-bold hover:bg-white/10"
+                  className="relative h-10 rounded-full px-4 font-medium text-white transition-colors data-[state=active]:text-blue-700 data-[state=active]:font-bold hover:bg-white/10"
                 >
                   Programación
                 </TabsTrigger>
                 <TabsTrigger
                   value="proximos-cursos"
-                  className="relative h-10 rounded-full px-4 pt-2 font-medium text-white transition-colors data-[state=active]:text-blue-700 data-[state=active]:font-bold hover:bg-white/10"
+                  className="relative h-10 rounded-full px-4 font-medium text-white transition-colors data-[state=active]:text-blue-700 data-[state=active]:font-bold hover:bg-white/10"
                 >
                   Próximos Cursos
                 </TabsTrigger>
